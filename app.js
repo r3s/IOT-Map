@@ -44,8 +44,10 @@ function initUser(){
 
 // Process data and broadcast
 function handleWeather(data){
-	saveData(data);
-	io.sockets.emit('data',data);
+	if(parseFloat(data.lat) && parseFloat(data.long) && parseFloat(data.temp)){
+		saveData(data);
+		io.sockets.emit('data',data);	
+	}
 }
 
 
